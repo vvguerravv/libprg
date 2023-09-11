@@ -1,20 +1,9 @@
 #ifndef LIBPRG_LIBPRG_H
 #define LIBPRG_LIBPRG_H
 
-
-
-typedef struct {
-    double value;
-    int error;
-} result_t;
-
-typedef enum { SUM, SUB } operation_t;
-
-
-
-result_t sub(double a, double b);
-result_t sum(double a, double b);
-result_t compute(double a, double b, operation_t op);
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 /**
  *
@@ -23,10 +12,37 @@ result_t compute(double a, double b, operation_t op);
  * @param elemento
  * @return 0 se ok e 1 se não ok
  */
-int insere_num(int *vetor,int *total,int tam_vetor,int elemento);
-int remove_num(int *vetor,int *total,int elemento);
-int busca_linear(int *vetor,int elemento);
-int busca_bin_int(int *vetor,int elemento);
-int busca_bin_rec(int *vetor,int elemento);
+
+#define NUM_MAX 1000
+
+//Irá criar um vetor povoado com número aleatórios que o usuário irá escolher
+int criar(int *vetor,int tamanho);
+
+//Irá inserir número em uma lista ordenada
+int insere_ord(int *vetor,int *total,int tamanho,int elemento);
+
+//Irá inserir um número em uma lista não ordenada
+int insere_nao_ord(int *vetor,int *total,int tamanho,int elemento);
+
+//Irá remover um número de uma lista ordenada
+int remove_num_ord(int *vetor,int *total,int tamanho,int elemento);
+
+//Irá remover um número de uma lista não ordenada
+int remove_num_nao_ord(int *vetor,int *total,int tamanho,int elemento);
+
+//Irá fazer uma busca linear pelo vetor
+int busca_linear(int *vetor,int total,int tamanho, int elemento);
+
+//Irá fazer uma busca binaria de forma interativa pelo vetor
+int busca_bin_int(int *vetor,int total, int tamanho,int elemento);
+
+//Irá fazer uma busca binaria de forma recursiva pelo vetor
+int busca_bin_rec(int *vetor,int total,int tamanho, int elemento);
+
+
+//Irá liberar a memório alocado pelo vetor
+int libera_memoria(int *vetor,int tamanho);
+
+
 
 #endif
