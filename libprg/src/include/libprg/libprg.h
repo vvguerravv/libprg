@@ -5,23 +5,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-/**
- *
- * @param vetor
- * @param total
- * @param elemento
- * @return 0 se ok e 1 se não ok
- */
-
 #define NUM_MAX 1000
 
-// ==================== LISTA ==================== //
+// =========================== LISTA =========================== //
 
-typedef struct{
-    int *vetor;
-    int tamanho
-
-};
 
 //Irá criar um vetor povoado com número aleatórios que o usuário irá escolher
 int criar(int *vetor,int tamanho);
@@ -50,7 +37,7 @@ int busca_bin_rec(int *vetor,int total,int tamanho, int elemento);
 //Irá liberar a memório alocado pelo vetor
 int libera_memoria(int *vetor,int tamanho);
 
-// ------------------------------- FILA ----------------------------------- //
+// =================================== FILA ===================================//
 
 typedef struct{
     int *vetor;
