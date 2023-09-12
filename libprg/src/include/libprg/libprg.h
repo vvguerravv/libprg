@@ -15,7 +15,13 @@
 
 #define NUM_MAX 1000
 
-// -------------------- LISTA ------------------------------- //
+// ==================== LISTA ==================== //
+
+typedef struct{
+    int *vetor;
+    int tamanho
+
+};
 
 //Irá criar um vetor povoado com número aleatórios que o usuário irá escolher
 int criar(int *vetor,int tamanho);
