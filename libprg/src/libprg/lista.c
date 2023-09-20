@@ -7,13 +7,38 @@ int criar(int *vetor,int tamanho)
     return 0;
 }
 
-int povoar(int *vetor,int tamanho)
+int povoar_nao_ord(int *vetor,int *total, int tamanho)
 {
     srand((unsigned) time(NULL));
     for(int i = 0;i < tamanho;i++){
         vetor[i] = rand() % 1000 + 1;
     }
 }
+
+int povoar_ord(int *vetor,int *total,int tamanho)
+{
+    srand((unsigned) time(NULL));
+    for(int i = 0;i < tamanho;i++){
+        if(i == 0){
+            vetor[i] = rand() % 1000 + 1;
+            total++;
+        } else{
+         for(int j = 0; j < total; j++){
+                 vetor[i] = rand() % 1000 + 1;
+                 if(vetor[j] > vetor[i]){
+                     int guarda = vetor[j];
+                     vetor[j] = vetor[i];
+                     vetor [i] = guarda;
+                     total++;
+                 } else{
+                     total++;
+                 }
+            }
+        }
+    }
+    return 0;
+}
+
 
 int insere_nao_ord(int *vetor,int *total,int tamanho,int elemento)
 {
@@ -103,6 +128,7 @@ int remove_num_nao_ord(int *vetor,int *total,int tamanho,int elemento)
             vetor[i] = vetor[total - 1];
         }
     }
+    total--;
     return 0;
 }
 

@@ -13,8 +13,11 @@
 //Irá criar um vetor povoado com número aleatórios que o usuário irá escolher
 int criar(int *vetor,int tamanho);
 
-//Irá povoar o vetor criado
-int povoar(int *vetor,int tamanho);
+//Irá povoar o vetor criado se for não ordenado
+int povoar_nao_ord(int *vetor,int *total,int tamanho);
+
+//Irá povoar o vetor criado se for ordenado
+int povoar_ord(int *vetor,int *total,int tamanho);
 
 //Irá inserir número em uma lista ordenada
 int insere_ord(int *vetor,int *total,int tamanho,int elemento);
