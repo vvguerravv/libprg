@@ -1,13 +1,5 @@
 #include <libprg/libprg.h>
 
-typedef struct{
-    int *vetor;
-    int total;
-    int inicio;
-    int fim;
-    int tamanho;
-}fila_t;
-
 int enqueue(fila_t *fila , int elemento){
     if(fila->tamanho == fila->total){
         return 1;
@@ -22,9 +14,9 @@ int enqueue(fila_t *fila , int elemento){
 
 int dequeue(fila_t *fila)
 {
-    return fila->vetor[fila->inicio];
     fila->inicio = (fila->inicio + 1) % fila ->tamanho;
     fila->total--;
+    return fila->vetor[fila->inicio];
 }
 
 int head(fila_t *fila)

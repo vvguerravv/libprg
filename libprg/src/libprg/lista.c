@@ -2,6 +2,7 @@
 
 int criar(int *vetor,int tamanho)
 {
+    //Verificr memória
     vetor = (int*) calloc(tamanho,sizeof (int));
 
     return 0;
@@ -46,8 +47,9 @@ int insere_nao_ord(int *vetor,int *total,int tamanho,int elemento)
     if(tamanho > total){
         vetor[(int) &total] = elemento;
         total++;
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 int insere_ord(int *vetor,int *total,int tamanho,int elemento)
@@ -55,8 +57,8 @@ int insere_ord(int *vetor,int *total,int tamanho,int elemento)
     if(total < tamanho){
         for(int i = 0; i < total; i++){
             if(vetor[i] > elemento){
-                for(int j = total;j >= i; j--){
-                    vetor[j + 1] = vetor[j]
+                for(int j = (int) &total;j >= i; j--){
+                    vetor[j + 1] = vetor[j];
                 }
                 vetor[i] = elemento;
                 break;
@@ -95,13 +97,13 @@ int busca_bin_int(int *vetor,int total,int elemento)
 int busca_bin_rec(int *vetor,int inicio,int fim, int elemento)
 {
     if(inicio <= fim){
-        int meio = incio + (fim - inicio) / 2;
+        int meio = inicio + (fim - inicio) / 2;
         if(vetor[meio] = elemento){
             return 1;
         } if(vetor[meio] > elemento){
-            return busca_bin_rec(*vetor,inicio, meio - 1, elemento);
+            return busca_bin_rec(vetor,inicio, meio - 1, elemento);
         }
-        return busca_bin_rec(*vetor, meio + 1, fim, elemento);
+        return busca_bin_rec(vetor, meio + 1, fim, elemento);
     }
     return 0;
 }
@@ -114,18 +116,18 @@ int remove_num_ord(int *vetor,int *total,int tamanho,int elemento)
                 vetor[i] = vetor[i + 1];
             }
             total--;
-            return 1;
+            return 0;
         }
     }
 
-    return 0;
+    return 1;
 }
 
 int remove_num_nao_ord(int *vetor,int *total,int tamanho,int elemento)
 {
     for(int i = 0;i < total;i++){
         if(vetor[i] == elemento){
-            vetor[i] = vetor[total - 1];
+            vetor[i] = vetor[(int) &total - 1];
         }
     }
     total--;

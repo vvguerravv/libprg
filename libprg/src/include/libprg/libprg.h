@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #define NUM_MAX 1000
 
@@ -35,10 +36,10 @@ int remove_num_nao_ord(int *vetor,int *total,int tamanho,int elemento);
 int busca_linear(int *vetor,int total,int tamanho, int elemento);
 
 //Irá fazer uma busca binaria de forma interativa pelo vetor
-int busca_bin_int(int *vetor,int total, int tamanho,int elemento);
+int busca_bin_int(int *vetor,int total,int elemento);
 
 //Irá fazer uma busca binaria de forma recursiva pelo vetor
-int busca_bin_rec(int *vetor,int total,int tamanho, int elemento);
+int busca_bin_rec(int *vetor,int inicio,int fim, int elemento);
 
 //Irá liberar a memório alocado pelo vetor
 int libera_memoria(int *vetor,int tamanho);
@@ -76,5 +77,26 @@ int empty(fila_t *fila);
 int full(fila_t *fila);
 
 //Inicio = (inicio + 1) % n
+
+// =================================== PILHA ===================================//
+
+typedef struct{
+    int *vetor;
+    int total;
+    int topo;
+    int tamanho;
+}pilha_t;
+
+//Irá adicionar um elemento ao topo da pilha
+int push(pilha_t *pilha, int elemento);
+
+//Irá remover o elemento que está no topo da pilha
+int pop(pilha_t *pilha);
+
+//Irá retornar o total de elementos que cabe na pilha
+int size_p(pilha_t pilha);
+
+//irá indicar se a pilha está vazia ou não
+int empty_p(pilha_t pilha)
 
 #endif
