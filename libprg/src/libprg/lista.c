@@ -14,6 +14,7 @@ int povoar_nao_ord(int *vetor,int *total, int tamanho)
     for(int i = 0;i < tamanho;i++){
         vetor[i] = rand() % 1000 + 1;
     }
+    return 0;
 }
 
 int povoar_ord(int *vetor,int *total,int tamanho)
@@ -64,8 +65,9 @@ int insere_ord(int *vetor,int *total,int tamanho,int elemento)
                 break;
             }
         }
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 
@@ -73,10 +75,10 @@ int busca_linear(int *vetor,int total,int tamanho, int elemento)
 {
     for(int i = 0; i < total; i++){
         if(vetor[i] == elemento){
-            return 1;
+            return 0;
         }
     }
-    return 0;
+    return 1;
 }
 
 int busca_bin_int(int *vetor,int total,int elemento)
@@ -84,14 +86,14 @@ int busca_bin_int(int *vetor,int total,int elemento)
     for(int i = 0; i <= total;i++){
         int meio = i + (total - i) / 2;
         if(vetor[meio] = elemento){
-            return 1;
+            return 0;
         } else if(vetor[meio] < elemento){
             i = meio + 1;
         } else{
             total = meio - 1;
         }
     }
-    return 0;
+    return 1;
 }
 
 int busca_bin_rec(int *vetor,int inicio,int fim, int elemento)
@@ -99,13 +101,13 @@ int busca_bin_rec(int *vetor,int inicio,int fim, int elemento)
     if(inicio <= fim){
         int meio = inicio + (fim - inicio) / 2;
         if(vetor[meio] = elemento){
-            return 1;
+            return 0;
         } if(vetor[meio] > elemento){
             return busca_bin_rec(vetor,inicio, meio - 1, elemento);
         }
         return busca_bin_rec(vetor, meio + 1, fim, elemento);
     }
-    return 0;
+    return 1;
 }
 
 int remove_num_ord(int *vetor,int *total,int tamanho,int elemento)
@@ -128,13 +130,15 @@ int remove_num_nao_ord(int *vetor,int *total,int tamanho,int elemento)
     for(int i = 0;i < total;i++){
         if(vetor[i] == elemento){
             vetor[i] = vetor[(int) &total - 1];
+            total--;
+            return 0;
         }
     }
-    total--;
-    return 0;
+    return 1;
 }
 
 int libera_memoria(int *vetor,int tamanho)
 {
     free(vetor);
+    return 0;
 }

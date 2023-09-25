@@ -82,10 +82,12 @@ int full(fila_t *fila);
 
 typedef struct{
     int *vetor;
-    int total;
     int topo;
     int tamanho;
 }pilha_t;
+
+//Irá criar um vetor para a pilha
+int vet_pilha(pilha_t *pilha);
 
 //Irá adicionar um elemento ao topo da pilha
 int push(pilha_t *pilha, int elemento);
@@ -93,7 +95,7 @@ int push(pilha_t *pilha, int elemento);
 //Irá remover o elemento que está no topo da pilha
 int pop(pilha_t *pilha);
 
-//Irá retornar o total de elementos que cabe na pilha
+//Irá retornar o total de elementos que tem na pilha
 int size_p(pilha_t pilha);
 
 //irá indicar se a pilha está vazia ou não

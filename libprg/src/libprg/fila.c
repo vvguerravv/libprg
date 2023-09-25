@@ -14,6 +14,7 @@ int enqueue(fila_t *fila , int elemento){
 
 int dequeue(fila_t *fila)
 {
+    if(fila->vetor)
     fila->inicio = (fila->inicio + 1) % fila ->tamanho;
     fila->total--;
     return fila->vetor[fila->inicio];
