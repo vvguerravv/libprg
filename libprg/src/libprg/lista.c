@@ -2,8 +2,11 @@
 
 int criar(int *vetor,int tamanho)
 {
-    //Verificr memória
     vetor = (int*) calloc(tamanho,sizeof (int));
+
+    if(vetor == NULL){
+        return 1;
+    }
 
     return 0;
 }
@@ -71,11 +74,11 @@ int insere_ord(int *vetor,int *total,int tamanho,int elemento)
 }
 
 
-int busca_linear(int *vetor,int total,int tamanho, int elemento)
+int busca_linear(int *vetor,int total, int elemento)
 {
     for(int i = 0; i < total; i++){
         if(vetor[i] == elemento){
-            return 0;
+            return i;
         }
     }
     return 1;
@@ -86,7 +89,7 @@ int busca_bin_int(int *vetor,int total,int elemento)
     for(int i = 0; i <= total;i++){
         int meio = i + (total - i) / 2;
         if(vetor[meio] = elemento){
-            return 0;
+            return meio;
         } else if(vetor[meio] < elemento){
             i = meio + 1;
         } else{
@@ -101,7 +104,7 @@ int busca_bin_rec(int *vetor,int inicio,int fim, int elemento)
     if(inicio <= fim){
         int meio = inicio + (fim - inicio) / 2;
         if(vetor[meio] = elemento){
-            return 0;
+            return meio;
         } if(vetor[meio] > elemento){
             return busca_bin_rec(vetor,inicio, meio - 1, elemento);
         }

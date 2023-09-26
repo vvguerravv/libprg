@@ -8,16 +8,16 @@ int vet_pilha(pilha_t *pilha)
 
 int push(pilha_t *pilha, int elemento)
 {
-    if(pilha->tamanho == pilha->topo){
+    if(pilha->tamanho == pilha->topo + 1){
         return 1;
     }
-    pilha->vetor[pilha->topo] = elemento;
-    pilha->topo++;
+    pilha->vetor[++pilha->topo] = elemento;
+    return 0;
 }
 
 int pop(pilha_t *pilha)
 {
-    if(pilha->vetor == NULL){
+    if(pilha->vetor == NULL || pilha->topo == -1){
         return 1;
     }
     int num = pilha->vetor[pilha->topo];
@@ -32,7 +32,7 @@ int size_p(pilha_t pilha)
 
 int empty_p(pilha_t pilha)
 {
-    if(pilha.topo < 0){
+    if(pilha.topo >= 0){
         return 1;
     }
     return 0;

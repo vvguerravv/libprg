@@ -33,12 +33,12 @@ int remove_num_ord(int *vetor,int *total,int tamanho,int elemento);
 int remove_num_nao_ord(int *vetor,int *total,int tamanho,int elemento);
 
 //Irá fazer uma busca linear pelo vetor
-int busca_linear(int *vetor,int total,int tamanho, int elemento);
+int busca_linear(int *vetor,int total, int elemento);
 
-//Irá fazer uma busca binaria de forma interativa pelo vetor
+//Irá fazer uma busca binaria de forma interativa pelo vetor e retorna a posição do elemento no vetor
 int busca_bin_int(int *vetor,int total,int elemento);
 
-//Irá fazer uma busca binaria de forma recursiva pelo vetor
+//Irá fazer uma busca binaria de forma recursiva pelo vetor e retorna a posição do elemento no vetor
 int busca_bin_rec(int *vetor,int inicio,int fim, int elemento);
 
 //Irá liberar a memório alocado pelo vetor
@@ -99,6 +99,6 @@ int pop(pilha_t *pilha);
 int size_p(pilha_t pilha);
 
 //irá indicar se a pilha está vazia ou não
-int empty_p(pilha_t pilha)
+int empty_p(pilha_t pilha);
 
 #endif

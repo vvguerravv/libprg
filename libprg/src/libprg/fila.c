@@ -1,10 +1,10 @@
 #include <libprg/libprg.h>
 
-int enqueue(fila_t *fila , int elemento){
+int enqueue(fila_t *fila , int elemento)
+{
     if(fila->tamanho == fila->total){
         return 1;
     }
-
     fila->vetor[fila->fim] = elemento;
     fila->fim = (fila->fim + 1)% fila ->tamanho;
     fila->total++;
@@ -37,11 +37,17 @@ int size(fila_t *fila)
 
 int empty(fila_t *fila)
 {
-    return fila->total == 0;
+    if(fila->total == 0){
+        return 0;
+    }
+    return 1;
 }
 
 int full(fila_t *fila)
 {
-    return fila->total == fila->tamanho;
+    if(fila->total == fila->tamanho){
+        return 0;
+    }
+    return 1;
 }
 
