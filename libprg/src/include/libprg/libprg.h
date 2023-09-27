@@ -27,10 +27,10 @@ int insere_ord(int *vetor,int *total,int tamanho,int elemento);
 int insere_nao_ord(int *vetor,int *total,int tamanho,int elemento);
 
 //Irá remover um número de uma lista ordenada
-int remove_num_ord(int *vetor,int *total,int tamanho,int elemento);
+int remove_num_ord(int *vetor,int *total,int elemento);
 
 //Irá remover um número de uma lista não ordenada
-int remove_num_nao_ord(int *vetor,int *total,int tamanho,int elemento);
+int remove_num_nao_ord(int *vetor,int *total,int elemento);
 
 //Irá fazer uma busca linear pelo vetor
 int busca_linear(int *vetor,int total, int elemento);

@@ -15,8 +15,9 @@ int povoar_nao_ord(int *vetor,int *total, int tamanho)
 {
     srand((unsigned) time(NULL));
     for(int i = 0;i < tamanho;i++){
-        vetor[i] = rand() % 1000 + 1;
+        vetor[i] = rand() % 100 + 1;
     }
+    (*total) = tamanho;
     return 0;
 }
 
@@ -25,22 +26,20 @@ int povoar_ord(int *vetor,int *total,int tamanho)
     srand((unsigned) time(NULL));
     for(int i = 0;i < tamanho;i++){
         if(i == 0){
-            vetor[i] = rand() % 1000 + 1;
-            total++;
+            vetor[i] = rand() % 100 + 1;
+            (*total)++;
         } else{
-         for(int j = 0; j < total; j++){
-                 vetor[i] = rand() % 1000 + 1;
-                 if(vetor[j] > vetor[i]){
-                     int guarda = vetor[j];
-                     vetor[j] = vetor[i];
-                     vetor [i] = guarda;
-                     total++;
-                 } else{
-                     total++;
-                 }
+            for(int j = 0; j < tamanho; j++){
+                vetor[i] = rand() % 100 + 1;
+                if(vetor[j] > vetor[i]){
+                    int guarda = vetor[j];
+                    vetor[j] = vetor[i];
+                    vetor [i] = guarda;
+                }
             }
         }
     }
+    (*total) = tamanho;
     return 0;
 }
 
@@ -48,9 +47,9 @@ int povoar_ord(int *vetor,int *total,int tamanho)
 int insere_nao_ord(int *vetor,int *total,int tamanho,int elemento)
 {
 
-    if(tamanho > total){
-        vetor[(int) &total] = elemento;
-        total++;
+    if(tamanho > (*total)){
+        vetor[(*total)] = elemento;
+        (*total)++;
         return 0;
     }
     return 1;
@@ -58,10 +57,10 @@ int insere_nao_ord(int *vetor,int *total,int tamanho,int elemento)
 
 int insere_ord(int *vetor,int *total,int tamanho,int elemento)
 {
-    if(total < tamanho){
-        for(int i = 0; i < total; i++){
+    if((*total) < tamanho){
+        for(int i = 0; i < (*total); i++){
             if(vetor[i] > elemento){
-                for(int j = (int) &total;j >= i; j--){
+                for(int j = (*total);j >= i; j--){
                     vetor[j + 1] = vetor[j];
                 }
                 vetor[i] = elemento;
@@ -81,7 +80,7 @@ int busca_linear(int *vetor,int total, int elemento)
             return i;
         }
     }
-    return 1;
+    return -1;
 }
 
 int busca_bin_int(int *vetor,int total,int elemento)
@@ -113,14 +112,14 @@ int busca_bin_rec(int *vetor,int inicio,int fim, int elemento)
     return 1;
 }
 
-int remove_num_ord(int *vetor,int *total,int tamanho,int elemento)
+int remove_num_ord(int *vetor,int *total,int elemento)
 {
-    for(int i = 0;i < total;i++){
+    for(int i = 0;i < (*total);i++){
         if(vetor[i] == elemento){
-            for(;i < total; i++){
+            for(;i < (*total); i++){
                 vetor[i] = vetor[i + 1];
             }
-            total--;
+            (*total)--;
             return 0;
         }
     }
@@ -128,12 +127,12 @@ int remove_num_ord(int *vetor,int *total,int tamanho,int elemento)
     return 1;
 }
 
-int remove_num_nao_ord(int *vetor,int *total,int tamanho,int elemento)
+int remove_num_nao_ord(int *vetor,int *total,int elemento)
 {
-    for(int i = 0;i < total;i++){
+    for(int i = 0;i < (*total);i++){
         if(vetor[i] == elemento){
-            vetor[i] = vetor[(int) &total - 1];
-            total--;
+            vetor[i] = vetor[(*total) - 1];
+            (*total)--;
             return 0;
         }
     }
