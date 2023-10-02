@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define NUM_MAX 1000
 
@@ -44,7 +45,7 @@ int busca_bin_rec(int *vetor,int inicio,int fim, int elemento);
 //Irá liberar a memório alocado pelo vetor
 int libera_memoria(int *vetor,int tamanho);
 
-// =================================== FILA ===================================//
+// =================================== FILA =================================== //
 
 typedef struct{
     int *vetor;
@@ -78,7 +79,7 @@ int full(fila_t *fila);
 
 //Inicio = (inicio + 1) % n
 
-// =================================== PILHA ===================================//
+// =================================== PILHA =================================== //
 
 typedef struct{
     int *vetor;
@@ -100,5 +101,36 @@ int size_p(pilha_t pilha);
 
 //irá indicar se a pilha está vazia ou não
 int empty_p(pilha_t pilha);
+
+
+// =================================== LISTA EM ALOCAÇÃO ENCADEADA=================================== //
+
+                             // -------------- SIMPLES -------------- //
+typedef struct no{
+    int elemento;
+    struct no_t* proximo;
+}no_t;
+
+no_t* create(int elemento);
+no_t* buscar_ordenada (no_t* inicio, int elemento);
+no_t* buscar_nao_ord(no_t* inicio, int elemento);
+no_t* inserir_ordenada(no_t* inicio, int elemento);
+no_t* inserir_nao_ord(no_t* inicio, int elemento);
+void destruir(no_t* inicio);
+
+                          // -------------- DUPLA -------------- //
+typedef struct nod{
+    int elemento;
+    struct nod_t* proximo;
+    struct nod_t* anterior;
+}nod_t;
+
+nod_t* create_dup(int elemento);
+nod_t* buscar_ord_dup(nod_t* inicio, int elemento);
+nod_t* busca_nao_ord_dup(nod_t* inicio, int elemento);
+nod_t* inserir_ord_sup(nod_t* inicio, int elemento);
+nod_t* inserir_nao_ord_sup(nod_t* inicio, int elemento);
+void destruir_dup(nod_t* inicio);
+
 
 #endif
