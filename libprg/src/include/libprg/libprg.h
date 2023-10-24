@@ -9,8 +9,8 @@
 #include <sys/time.h>
 
 // =========================== TOMADA DE TEMPO =========================== //
-void inicio_relogio_parede(struct timeval inicio);
-double fim_relogio_parede(struct timeval inicio);
+void inicio_relogio_parede(struct timeval *inicio);
+double fim_relogio_parede(struct timeval *inicio);
 void relogio_CPU();
 
 
