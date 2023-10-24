@@ -6,11 +6,15 @@
 #include <time.h>
 #include <string.h>
 #include <stdbool.h>
+#include <sys/time.h>
 
-#define NUM_MAX 1000
+// =========================== TOMADA DE TEMPO =========================== //
+void inicio_relogio_parede(struct timeval inicio);
+double fim_relogio_parede(struct timeval inicio);
+void relogio_CPU();
+
 
 // =========================== LISTA =========================== //
-
 
 //Irá criar um vetor povoado com número aleatórios que o usuário irá escolher
 int criar(int *vetor,int tamanho);
@@ -131,6 +135,20 @@ nod_t* busca_nao_ord_dup(nod_t* inicio, int elemento);
 nod_t* inserir_ord_sup(nod_t* inicio, int elemento);
 nod_t* inserir_nao_ord_sup(nod_t* inicio, int elemento);
 void destruir_dup(nod_t* inicio);
+
+// =================================== ORDENAÇÃO =================================== //
+typedef struct {
+    int *vet;
+    int tamanho;
+}ord_t;
+
+int criar_vet(ord_t *ord);
+int povoar(ord_t *ord);
+void bubble(ord_t *ord,bool crescente);
+void insert(ord_t *ord);
+void selection(ord_t *ord,bool crescente);
+void nosso(ord_t *ord);
+void imprimi(ord_t *ord);
 
 
 #endif
