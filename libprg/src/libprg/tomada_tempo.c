@@ -2,7 +2,7 @@
 
 void inicio_relogio_parede(struct timeval *inicio)
 {
-    gettimeofday(&inicio, 0);
+    gettimeofday(inicio, 0);
 }
 
 double fim_relogio_parede(struct timeval *inicio)

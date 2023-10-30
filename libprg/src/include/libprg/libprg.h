@@ -148,6 +148,8 @@ void bubble(ord_t *ord,bool crescente);
 void insert(ord_t *ord);
 void selection(ord_t *ord,bool crescente);
 void nosso(ord_t *ord);
+void merge_sort(ord_t *ord, int esquerda, int direita);
+void merge(ord_t *ord,int meio,int esquerda, int direita);
 void imprimi(ord_t *ord);
 
 

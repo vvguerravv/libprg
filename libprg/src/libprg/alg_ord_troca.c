@@ -74,7 +74,6 @@ void insert(ord_t *ord)
 
 void selection(ord_t *ord, bool crescente)
 {
-
     for(int i = 0; i < ord->tamanho; i++){
         int guarda = i;
         for(int j = i+1; j < ord->tamanho;j++){
@@ -88,4 +87,46 @@ void selection(ord_t *ord, bool crescente)
             ord->vet[guarda] = aux;
         }
     }
+}
+
+void merge_sort(ord_t *ord,int esquerda, int direita)
+{
+    if(esquerda < direita){
+        int meio = esquerda + (direita - esquerda)/2;
+        merge_sort(ord,esquerda,meio);
+        merge_sort(ord,meio + 1,direita);
+        merge(ord,esquerda,meio,direita);
+    }
+}
+
+void merge(ord_t *ord,int meio,int esquerda, int direita)
+{
+    int *aux = (int*) calloc(direita - esquerda + 1,sizeof(int));
+    int i = esquerda; int j = meio + 1 ; int k = 0;
+
+    while(i <= meio && j <= direita){
+        if(ord->vet[i] <= ord->vet[j]){
+            aux[k] = ord->vet[i];
+            i++;
+        } else{
+            aux[k] = ord->vet[j];
+            j++;
+        }
+    }
+
+    while(i <= meio){
+        aux[k] = ord->vet[i];
+        i++;k++;
+    }
+
+    while(j <= direita){
+        aux[k] = ord->vet[j];
+        j++;k++;
+    }
+
+    for(i = esquerda; i < direita;i++){
+        ord->vet[i] = aux[i - esquerda];
+    }
+
+    free(aux);
 }
