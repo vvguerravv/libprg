@@ -9,9 +9,9 @@
 #include <sys/time.h>
 
 // =========================== TOMADA DE TEMPO =========================== //
-void inicio_relogio_parede(struct timeval *inicio);
+void inicio(struct timeval *inicio);
 double fim_relogio_parede(struct timeval *inicio);
-void relogio_CPU();
+double fim_CPU(clock_t inicio);
 
 
 // =========================== LISTA =========================== //
@@ -158,8 +158,11 @@ void insert(ord_t *ord);
 void selection(ord_t *ord,bool crescente);
 void nosso(ord_t *ord);
 void merge_sort(ord_t *ord, int esquerda, int direita);
-void merge(ord_t *ord,int meio,int esquerda, int direita);
+void merge(ord_t *ord, int mid, int esquerda, int direita);
+void quick_sort(ord_t *ord, int start, int end);
+int particiona(ord_t *ord, int start, int end);
 void imprimi(ord_t *ord);
+void troca_pos(ord_t *ord, int i, int j);
 
 
 
