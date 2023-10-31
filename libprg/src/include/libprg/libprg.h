@@ -17,37 +17,46 @@ void relogio_CPU();
 // =========================== LISTA =========================== //
 
 //Irá criar um vetor povoado com número aleatórios que o usuário irá escolher
-int criar(int *vetor,int tamanho);
+typedef struct {
+    int *vetor;
+    int tamanho;
+    int total;
+    int inicio;
+    int pos;
+}lista_t;
+
+//Irá criar um vetor de tamanho n, alocado de forma dinâmica
+int criar(lista_t *lista);
 
 //Irá povoar o vetor criado se for não ordenado
-int povoar_nao_ord(int *vetor,int *total,int tamanho);
+void povoar_nao_ord(lista_t *lista);
 
 //Irá povoar o vetor criado se for ordenado
-int povoar_ord(int *vetor,int *total,int tamanho);
+void povoar_ord(lista_t *lista);
 
 //Irá inserir número em uma lista ordenada
-int insere_ord(int *vetor,int *total,int tamanho,int elemento);
+int insere_ord(lista_t *lista, int elemento);
 
 //Irá inserir um número em uma lista não ordenada
-int insere_nao_ord(int *vetor,int *total,int tamanho,int elemento);
+int insere_nao_ord(lista_t *lista, int elemento);
 
 //Irá remover um número de uma lista ordenada
-int remove_num_ord(int *vetor,int *total,int elemento);
+int remove_num_ord(lista_t *lista, int elemento);
 
 //Irá remover um número de uma lista não ordenada
-int remove_num_nao_ord(int *vetor,int *total,int elemento);
+int remove_num_nao_ord(lista_t *lista, int elemento);
 
 //Irá fazer uma busca linear pelo vetor
-int busca_linear(int *vetor,int total, int elemento);
+int busca_linear(lista_t *lista, int elemento);
 
 //Irá fazer uma busca binaria de forma interativa pelo vetor e retorna a posição do elemento no vetor
-int busca_bin_int(int *vetor,int total,int elemento);
+int busca_bin_int(lista_t *lista, int elemento);
 
 //Irá fazer uma busca binaria de forma recursiva pelo vetor e retorna a posição do elemento no vetor
-int busca_bin_rec(int *vetor,int inicio,int fim, int elemento);
+int busca_bin_rec(lista_t *lista, int inicio, int fim, int elemento);
 
 //Irá liberar a memório alocado pelo vetor
-int libera_memoria(int *vetor,int tamanho);
+int libera_memoria(lista_t *lista);
 
 // =================================== FILA =================================== //
 
@@ -151,6 +160,7 @@ void nosso(ord_t *ord);
 void merge_sort(ord_t *ord, int esquerda, int direita);
 void merge(ord_t *ord,int meio,int esquerda, int direita);
 void imprimi(ord_t *ord);
+
 
 
 #endif

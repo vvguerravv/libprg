@@ -32,6 +32,3 @@ void relogio_CPU()
 
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 }
-
-
-
