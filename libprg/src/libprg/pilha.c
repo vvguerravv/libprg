@@ -4,15 +4,19 @@ int vet_pilha(pilha_t *pilha)
 {
    pilha->vetor = (int*) calloc(pilha->tamanho,sizeof (int));
    pilha->topo = -1;
+   if(pilha->vetor == NULL){
+       return 0;
+   }
+    return 1;
 }
 
 int push(pilha_t *pilha, int elemento)
 {
     if(pilha->tamanho == pilha->topo + 1){
-        return 1;
+        return 0;
     }
     pilha->vetor[++pilha->topo] = elemento;
-    return 0;
+    return 1;
 }
 
 int pop(pilha_t *pilha)

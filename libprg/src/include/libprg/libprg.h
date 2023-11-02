@@ -90,7 +90,7 @@ int empty(fila_t *fila);
 //Irá indicar se a fila está cheia ou não
 int full(fila_t *fila);
 
-//Inicio = (inicio + 1) % n
+//Inicio = (start + 1) % n
 
 // =================================== PILHA =================================== //
 
@@ -119,17 +119,31 @@ int empty_p(pilha_t pilha);
 // =================================== LISTA EM ALOCAÇÃO ENCADEADA=================================== //
 
                              // -------------- SIMPLES -------------- //
-typedef struct no{
-    int elemento;
-    struct no_t* proximo;
+typedef struct no_t{
+    int element;
+    struct no_t* next;
 }no_t;
 
-no_t* create(int elemento);
-no_t* buscar_ordenada (no_t* inicio, int elemento);
-no_t* buscar_nao_ord(no_t* inicio, int elemento);
-no_t* inserir_ordenada(no_t* inicio, int elemento);
-no_t* inserir_nao_ord(no_t* inicio, int elemento);
-void destruir(no_t* inicio);
+typedef struct {
+    no_t *start;
+    int size;
+}ChainedList_t;
+
+typedef struct {
+    no_t *high;
+    int size;
+}Stackist_t;
+
+void addList(ChainedList_t *queue, no_t **no, int value);
+int removeList(ChainedList_t *queue, no_t **no);
+int searchList(no_t **no, int element);
+
+void addStack(Stackist_t *stack,no_t **no,int element);
+int removeStack(Stackist_t *stack, no_t **no);
+int searchStack(no_t **no, int element);
+
+void printNo(no_t *no);
+
 
                           // -------------- DUPLA -------------- //
 typedef struct nod{
@@ -138,12 +152,7 @@ typedef struct nod{
     struct nod_t* anterior;
 }nod_t;
 
-nod_t* create_dup(int elemento);
-nod_t* buscar_ord_dup(nod_t* inicio, int elemento);
-nod_t* busca_nao_ord_dup(nod_t* inicio, int elemento);
-nod_t* inserir_ord_sup(nod_t* inicio, int elemento);
-nod_t* inserir_nao_ord_sup(nod_t* inicio, int elemento);
-void destruir_dup(nod_t* inicio);
+
 
 // =================================== ORDENAÇÃO =================================== //
 typedef struct {
