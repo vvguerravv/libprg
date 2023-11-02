@@ -9,9 +9,9 @@
 #include <sys/time.h>
 
 // =========================== TOMADA DE TEMPO =========================== //
-void inicio(struct timeval *inicio);
+void inicio_relogio_parede(struct timeval *inicio);
 double fim_relogio_parede(struct timeval *inicio);
-double fim_CPU(clock_t inicio);
+void relogio_CPU();
 
 
 // =========================== LISTA =========================== //
@@ -118,7 +118,7 @@ int empty_p(pilha_t pilha);
 
 // =================================== LISTA EM ALOCAÇÃO ENCADEADA=================================== //
 
-                             // -------------- SIMPLES -------------- //
+// -------------- SIMPLES -------------- //
 typedef struct no_t{
     int element;
     struct no_t* next;
@@ -145,7 +145,7 @@ int searchStack(no_t **no, int element);
 void printNo(no_t *no);
 
 
-                          // -------------- DUPLA -------------- //
+// -------------- DUPLA -------------- //
 typedef struct nod{
     int elemento;
     struct nod_t* proximo;
@@ -167,11 +167,8 @@ void insert(ord_t *ord);
 void selection(ord_t *ord,bool crescente);
 void nosso(ord_t *ord);
 void merge_sort(ord_t *ord, int esquerda, int direita);
-void merge(ord_t *ord, int mid, int esquerda, int direita);
-void quick_sort(ord_t *ord, int start, int end);
-int particiona(ord_t *ord, int start, int end);
+void merge(ord_t *ord,int meio,int esquerda, int direita);
 void imprimi(ord_t *ord);
-void troca_pos(ord_t *ord, int i, int j);
 
 
 

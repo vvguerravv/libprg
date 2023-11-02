@@ -2,11 +2,11 @@
 
 int vet_pilha(pilha_t *pilha)
 {
-   pilha->vetor = (int*) calloc(pilha->tamanho,sizeof (int));
-   pilha->topo = -1;
-   if(pilha->vetor == NULL){
-       return 0;
-   }
+    pilha->vetor = (int*) calloc(pilha->tamanho,sizeof (int));
+    pilha->topo = -1;
+    if(pilha->vetor == NULL){
+        return 0;
+    }
     return 1;
 }
 
