@@ -1,6 +1,6 @@
 #include <libprg/libprg.h>
 
-void inicio_relogio_parede(struct timeval *inicio)
+void inicio(struct timeval *inicio)
 {
     gettimeofday(inicio, 0);
 }
@@ -17,18 +17,8 @@ double fim_relogio_parede(struct timeval *inicio)
     return tempo_total;
 }
 
-void relogio_CPU()
+double fim_CPU(clock_t inicio)
 {
-    clock_t start, end;
-    double cpu_time_used;
-    start = clock();
-
-    while (1) {
-        if (getchar())
-            break;
-    }
-
-    end = clock();
-
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    clock_t fim = clock();
+    return ((double) (fim - inicio)) / CLOCKS_PER_SEC;
 }

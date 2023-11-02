@@ -89,44 +89,71 @@ void selection(ord_t *ord, bool crescente)
     }
 }
 
-void merge_sort(ord_t *ord,int esquerda, int direita)
-{
-    if(esquerda < direita){
-        int meio = esquerda + (direita - esquerda)/2;
-        merge_sort(ord,esquerda,meio);
-        merge_sort(ord,meio + 1,direita);
-        merge(ord,esquerda,meio,direita);
-    }
-}
-
-void merge(ord_t *ord,int meio,int esquerda, int direita)
-{
-    int *aux = (int*) calloc(direita - esquerda + 1,sizeof(int));
-    int i = esquerda; int j = meio + 1 ; int k = 0;
-
-    while(i <= meio && j <= direita){
+void merge(ord_t *ord, int left, int mid, int right){
+    int *aux = (int *) malloc(sizeof(right - left + 1));
+    int i = left;
+    int j = mid + 1;
+    int k = 0;
+    while((i <= mid) && (j <= right)){
         if(ord->vet[i] <= ord->vet[j]){
             aux[k] = ord->vet[i];
             i++;
-        } else{
+        }else{
             aux[k] = ord->vet[j];
             j++;
         }
+        k++;
     }
-
-    while(i <= meio){
+    while(i <= mid){
         aux[k] = ord->vet[i];
-        i++;k++;
+        i++; k++;
     }
-
-    while(j <= direita){
+    while(j <= right){
         aux[k] = ord->vet[j];
-        j++;k++;
+        j++; k++;
     }
-
-    for(i = esquerda; i < direita;i++){
-        ord->vet[i] = aux[i - esquerda];
+    for(i = left; i <= right; i++){
+        ord->vet[i] = aux[i - left];
     }
-
     free(aux);
+}
+
+void merge_sort(ord_t *ord, int left, int right){
+    int mid;
+    if(left < right){
+        mid = left + (right - left) / 2;
+        merge_sort(ord, left, mid);
+        merge_sort(ord, mid + 1, right);
+        merge(ord, left, mid, right);
+    }
+}
+
+void troca_pos(ord_t *ord, int i, int j)
+{
+   ord->vet[i] = ord->vet[j];
+}
+
+int particiona(ord_t *ord, int start, int end)
+{
+    int pivo = ord->vet[end];
+    int i = start - 1;
+    for(int j = start; j < end ; j++){
+        if(ord->vet[j] <= pivo){
+            i++;
+            troca_pos(ord, i, j);
+        }
+    }
+    i++;
+    troca_pos(ord, i, end);
+    return i;
+}
+
+void quick_sort(ord_t *ord, int start, int end)
+{
+    int p;
+    if(start < end){
+        p = particiona(ord, start, end);
+        quick_sort(ord, start, p - 1);
+        quick_sort(ord, p + 1, end);
+    }
 }
