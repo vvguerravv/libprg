@@ -7,6 +7,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <sys/time.h>
+#include <limits.h>
+#include <stdint.h>
 
 // =========================== TOMADA DE TEMPO =========================== //
 void inicio_relogio_parede(struct timeval *inicio);
@@ -166,8 +168,8 @@ void bubble(ord_t *ord,bool crescente);
 void insert(ord_t *ord);
 void selection(ord_t *ord,bool crescente);
 void nosso(ord_t *ord);
-void merge_sort(ord_t *ord, int esquerda, int direita);
-void merge(ord_t *ord,int meio,int esquerda, int direita);
+void merge_sort(ord_t *ord, int left, int right);
+void merge(ord_t *ord, int left, int mid, int right);
 void imprimi(ord_t *ord);
 
 
