@@ -121,9 +121,9 @@ int empty_p(pilha_t pilha);
 // =================================== LISTA EM ALOCAÇÃO ENCADEADA=================================== //
 
 // -------------- SIMPLES -------------- //
-typedef struct no_t{
+typedef struct no{
     int element;
-    struct no_t* next;
+    struct no * next;
 }no_t;
 
 typedef struct {
@@ -136,15 +136,19 @@ typedef struct {
     int size;
 }Stackist_t;
 
-void addList(ChainedList_t *queue, no_t **no, int value);
-int removeList(ChainedList_t *queue, no_t **no);
-int searchList(no_t **no, int element);
+void addList(ChainedList_t *queue, no_t **node, int value);
+int removeList(ChainedList_t *queue, no_t **node);
+int searchList(no_t **node, int element);
 
-void addStack(Stackist_t *stack,no_t **no,int element);
-int removeStack(Stackist_t *stack, no_t **no);
-int searchStack(no_t **no, int element);
+void addStack(Stackist_t *stack, no_t **node, int element);
+int removeStack(Stackist_t *stack, no_t **node);
+int searchStack(no_t **node, int element);
 
-void printNo(no_t *no);
+void addCircle(no_t **node, bool op, int value);
+int removeCircle(no_t **node, int value);
+int searchCircle(no_t **node,int value);
+
+void printNo(no_t *node);
 
 
 // -------------- DUPLA -------------- //
