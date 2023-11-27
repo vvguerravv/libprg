@@ -177,5 +177,18 @@ void merge(ord_t *ord, int left, int mid, int right);
 void imprimi(ord_t *ord);
 
 
+// =================================== Árvore ===================================
+
+typedef struct nTree{
+    int value;
+    struct nTree *left;
+    struct nTree *right;
+}tree_t;
+
+tree_t *crateTree(int value);
+void destruct_tree(tree_t *node);
+tree_t *insert_value(tree_t  *root, int value);
+bool searchTree(tree_t *node, int value);
+
 
 #endif
