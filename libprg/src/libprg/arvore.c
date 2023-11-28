@@ -46,3 +46,45 @@ bool searchTree(tree_t *root, int value)
 
     return searchTree(root->right,value);
 }
+
+int maxNum(tree_t *root)
+{
+    if(root != NULL){
+        if(root->right != NULL){
+            return maxNum(root->right);
+        } else {
+            return root->value;
+        }
+    }
+    return -1;
+}
+
+int minNum(tree_t *root)
+{
+    if(root != NULL){
+        if(root->left != NULL){
+            return minNum(root->left);
+        } else{
+            return root->value;
+        }
+    }
+}
+
+tree_t *teste(tree_t *root,int value,int *level)
+{
+    if(root == NULL){
+        return root;
+    }
+    if(value == root->value){
+        return root;
+    }
+
+    if (value < root->value){
+        (*level)++;
+        return teste(root->left, value,level);
+    } else{
+        (*level)++;
+        return teste(root->right,value,level);
+    }
+
+}

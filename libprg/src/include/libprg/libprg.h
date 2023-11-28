@@ -12,8 +12,10 @@
 
 // =========================== TOMADA DE TEMPO =========================== //
 void inicio_relogio_parede(struct timeval *inicio);
+void inicio(struct timeval *inicio);
 double fim_relogio_parede(struct timeval *inicio);
 void relogio_CPU();
+double fim_CPU(clock_t inicio);
 
 
 // =========================== LISTA =========================== //
@@ -189,6 +191,10 @@ tree_t *crateTree(int value);
 void destruct_tree(tree_t *node);
 tree_t *insert_value(tree_t  *root, int value);
 bool searchTree(tree_t *node, int value);
+int maxNum(tree_t *root);
+int minNum(tree_t *root);
+void rootPrintsoon(tree_t *root,int value);
+tree_t *teste(tree_t *root,int value, int *level);
 
 
 #endif
