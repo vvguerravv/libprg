@@ -187,6 +187,13 @@ typedef struct nTree{
     struct nTree *right;
 }tree_t;
 
+typedef struct{
+    tree_t *array;
+    int fim;
+    int total;
+    int inicio;
+}queue_t;
+
 tree_t *crateTree(int value);
 void destruct_tree(tree_t *node);
 tree_t *insert_value(tree_t  *root, int value);
@@ -194,7 +201,13 @@ bool searchTree(tree_t *node, int value);
 int maxNum(tree_t *root);
 int minNum(tree_t *root);
 void rootPrintsoon(tree_t *root,int value);
-tree_t *teste(tree_t *root,int value, int *level);
+tree_t *son(tree_t *root,int value, int *level);
+tree_t *removeNum(tree_t *root, int value);
+tree_t  *inOrder(tree_t *root);
+tree_t *preOder(tree_t *root);
+tree_t *posOrder(tree_t *root);
+tree_t *width(tree_t *root,fila_t *fila);
+tree_t *enqueueTree(tree_t *root);
 
 
 #endif

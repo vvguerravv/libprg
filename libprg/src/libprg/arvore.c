@@ -70,7 +70,7 @@ int minNum(tree_t *root)
     }
 }
 
-tree_t *teste(tree_t *root,int value,int *level)
+tree_t *son(tree_t *root,int value,int *level)
 {
     if(root == NULL){
         return root;
@@ -81,10 +81,92 @@ tree_t *teste(tree_t *root,int value,int *level)
 
     if (value < root->value){
         (*level)++;
-        return teste(root->left, value,level);
+        return son(root->left, value,level);
     } else{
         (*level)++;
-        return teste(root->right,value,level);
+        return son(root->right,value,level);
     }
 
+}
+
+tree_t *removeNum(tree_t *root, int value)
+{
+    if (root == NULL)
+        return root;
+
+    if (value < root->value )
+        root->left = removeNum(root->left, value);
+    else if (value > root->value)
+        root->right = removeNum(root->right, value);
+    else {
+        if (root->left == NULL) {
+            tree_t *temp = root->right;
+            free(root);
+            return temp;
+        } else if (root->right == NULL) {
+            tree_t *temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        tree_t *temp = root->right;
+        while (temp->left != NULL)
+            temp = temp->left;
+
+        root->value = temp->value;
+
+        root->right = removeNum(root->right, temp->value);
+    }
+    return root;
+}
+
+tree_t  *inOrder(tree_t *root)
+{
+    if(root != NULL){
+        inOrder(root->left);
+        printf("%d ",root->value);
+        inOrder(root->right);
+    }
+}
+
+tree_t *preOder(tree_t *root)
+{
+    if(root != NULL){
+        printf("%d ",root->value);
+        preOder(root->left);
+        preOder(root->right);
+    }
+}
+
+tree_t *posOrder(tree_t *root)
+{
+    if(root != NULL){
+        posOrder(root->left);
+        posOrder(root->right);
+        printf("%d ",root->value);
+    }
+}
+
+tree_t *width(tree_t *root,fila_t *fila)
+{
+    while(root != NULL){
+        printf("%d ",root->value);
+        if(root->left != NULL){
+            enqueue(fila,root)
+        }
+    }
+}
+
+
+
+tree_t *enqueueTree(tree_t *root);
+{
+    if(fila->tamanho == fila->total){
+        return 1;
+    }
+    fila->vetor[fila->fim] = elemento;
+    fila->fim = (fila->fim + 1)% fila ->tamanho;
+    fila->total++;
+
+    return 0;
 }
