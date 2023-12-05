@@ -188,10 +188,11 @@ typedef struct nTree{
 }tree_t;
 
 typedef struct{
-    tree_t *array;
+    tree_t **array;
     int fim;
     int total;
     int inicio;
+    int size;
 }queue_t;
 
 tree_t *crateTree(int value);
@@ -203,11 +204,15 @@ int minNum(tree_t *root);
 void rootPrintsoon(tree_t *root,int value);
 tree_t *son(tree_t *root,int value, int *level);
 tree_t *removeNum(tree_t *root, int value);
-tree_t  *inOrder(tree_t *root);
-tree_t *preOder(tree_t *root);
-tree_t *posOrder(tree_t *root);
-tree_t *width(tree_t *root,fila_t *fila);
-tree_t *enqueueTree(tree_t *root);
+tree_t *dequeueTree(tree_t *root, queue_t *queue);
+void  inOrder(tree_t *root);
+void preOder(tree_t *root);
+void posOrder(tree_t *root);
+void width(tree_t *root,int size);
+void enqueueTree(tree_t *root, queue_t *queue);
+void printTree(tree_t *root);
+void printGraph(tree_t *root);
+
 
 
 #endif

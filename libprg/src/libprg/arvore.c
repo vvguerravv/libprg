@@ -120,7 +120,7 @@ tree_t *removeNum(tree_t *root, int value)
     return root;
 }
 
-tree_t  *inOrder(tree_t *root)
+void inOrder(tree_t *root)
 {
     if(root != NULL){
         inOrder(root->left);
@@ -129,7 +129,7 @@ tree_t  *inOrder(tree_t *root)
     }
 }
 
-tree_t *preOder(tree_t *root)
+void preOder(tree_t *root)
 {
     if(root != NULL){
         printf("%d ",root->value);
@@ -138,7 +138,7 @@ tree_t *preOder(tree_t *root)
     }
 }
 
-tree_t *posOrder(tree_t *root)
+void posOrder(tree_t *root)
 {
     if(root != NULL){
         posOrder(root->left);
@@ -147,26 +147,77 @@ tree_t *posOrder(tree_t *root)
     }
 }
 
-tree_t *width(tree_t *root,fila_t *fila)
+void width(tree_t *root,int size)
 {
+    queue_t *queue;
+
+    if((queue = malloc(sizeof(tree_t))) == NULL){
+        exit(EXIT_FAILURE);
+    }
+    if((queue->array = calloc(size,sizeof(queue_t))) == NULL){
+        exit(EXIT_FAILURE);
+    }
+
+    for(int i = 0; i < size; i++){
+        queue->array[i] == NULL;
+    }
+
+    queue->inicio = 0;
+    queue->fim = 0;
+    queue->total = 0;
+    queue->size = size;
+
     while(root != NULL){
         printf("%d ",root->value);
         if(root->left != NULL){
-            enqueue(fila,root)
+            enqueueTree(root->left,queue);
+        } if(root->right != NULL){
+            enqueueTree(root->right,queue);
         }
+        root = dequeueTree(root,queue);
     }
 }
 
-
-
-tree_t *enqueueTree(tree_t *root);
+void enqueueTree(tree_t *root, queue_t *queue)
 {
-    if(fila->tamanho == fila->total){
-        return 1;
+    if(queue->size == queue->total){
+        return;
     }
-    fila->vetor[fila->fim] = elemento;
-    fila->fim = (fila->fim + 1)% fila ->tamanho;
-    fila->total++;
+    queue->array[queue->fim] = root;
+    queue->fim = (queue->fim + 1) % queue->size;
+    queue->total++;
+}
 
-    return 0;
+tree_t *dequeueTree(tree_t *root, queue_t *queue)
+{
+    if(queue->total == 0){
+        return NULL;
+    }
+    queue->inicio = (queue->inicio + 1) % queue->size;
+    queue->total--;
+    return queue->array[queue->inicio];
+}
+
+void printTree(tree_t *root)
+{
+    if(root != NULL){
+        if(root->left != NULL){
+            printf("%d -- %d\n",root->value,root->left->value);
+        } if(root->right != NULL){
+            printf("%d -- %d\n",root->value,root->right->value);
+        }
+        printTree(root->left);
+        printTree(root->right);
+    }
+
+}
+
+void printGraph(tree_t *root)
+{
+    printf("strict graph{\n"
+           "label=\"Árvore de busca binária\";\n"
+           "node [shape=\"circle\", color=\"#339966\", style=\"filled\",\n"
+           "fixedsize=true];\n");
+    printTree(root);
+    printf("}\n");
 }
