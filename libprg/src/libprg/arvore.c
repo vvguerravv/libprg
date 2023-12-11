@@ -221,3 +221,84 @@ void printGraph(tree_t *root)
     printTree(root);
     printf("}\n");
 }
+
+int height(treeAvl_t *treeAvl)
+{
+    if(treeAvl == NULL){
+        return 0;
+    }else{
+        return treeAvl->height;
+    }
+}
+
+int balancingFactor(treeAvl_t *treeAvl)
+{
+    if(treeAvl == NULL){
+        return 0;
+    } else{
+        return height(treeAvl->left) - height(treeAvl->right);
+    }
+}
+
+treeAvl_t *leftRotation(treeAvl_t *treeAvl)
+{
+    treeAvl_t *new = treeAvl->right;
+    treeAvl->right = new->left;
+    new->left = treeAvl;
+
+    treeAvl->height = max(height(treeAvl->left), height(treeAvl->right)) + 1;
+    new->height = max(height(new->left), height(new->right));
+
+    return new;
+}
+
+treeAvl_t *rightRotation(treeAvl_t *treeAvl)
+{
+    treeAvl_t *new = treeAvl->left;
+    treeAvl->left = new->right;
+    new->right = treeAvl;
+
+    treeAvl->height = max(height(treeAvl->left), height(treeAvl->right)) + 1;
+    new->height = max(height(new->left), height(new->right));
+
+    return new;
+}
+
+treeAvl_t *RightLeft(treeAvl_t *treeAvl)
+{
+    treeAvl->right = rightRotation(treeAvl->right);
+
+
+    return leftRotation(treeAvl);
+}
+
+treeAvl_t *LeftRight(treeAvl_t *treeAvl)
+{
+    treeAvl->left = leftRotation(treeAvl->left);
+
+    return rightRotation(treeAvl);
+}
+
+treeAvl_t *balancing(treeAvl_t *treeAvl)
+{
+    int factor = balancingFactor(treeAvl);
+
+    if(factor > 1){
+        if(balancingFactor(treeAvl->left) > 0){
+            return rightRotation(treeAvl);
+        } else{
+            return LeftRight(treeAvl);
+        }
+    } else if(factor < -1){
+        if(balancingFactor(treeAvl->right) > 0){
+            return leftRotation(treeAvl);
+        } else{
+            return RightLeft(treeAvl);
+        }
+    }
+
+    return treeAvl;
+}
+
+
+

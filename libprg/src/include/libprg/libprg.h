@@ -181,11 +181,20 @@ void imprimi(ord_t *ord);
 
 // =================================== Árvore ===================================
 
+#define max(a,b) (((a) > (b))) ? (a) : (b)
+
 typedef struct nTree{
     int value;
     struct nTree *left;
     struct nTree *right;
 }tree_t;
+
+typedef struct treeAvl{
+    int value;
+    int height;
+    struct treeAvl *left;
+    struct treeAvl *right;
+}treeAvl_t;
 
 typedef struct{
     tree_t **array;
@@ -212,7 +221,13 @@ void width(tree_t *root,int size);
 void enqueueTree(tree_t *root, queue_t *queue);
 void printTree(tree_t *root);
 void printGraph(tree_t *root);
-
+int height(treeAvl_t *treeAvl);
+int balancingFactor(treeAvl_t *treeAvl);
+treeAvl_t *leftRotation(treeAvl_t *treeAvl);
+treeAvl_t *rightRotation(treeAvl_t *treeAvl);
+treeAvl_t *RightLeft(treeAvl_t *treeAvl);
+treeAvl_t *LeftRight(treeAvl_t *treeAvl);
+treeAvl_t *balancing(treeAvl_t *treeAvl);
 
 
 #endif
